@@ -1,0 +1,10 @@
+beatanalysis.pro.user
+*.o
+moc_*.h
+moc_*.cpp
+ui_*.h
+Info.plist
+Makefile
+beatanalysis.app*
+qrc_*.cpp
+beatanalysis
