@@ -582,6 +582,7 @@ float TrackAnalyser::detectTempo(QList<float> onsets)
     p->xcorr = new float[frames];
     memset(p->xcorr, 0, frames * sizeof(float));
 
+    //ToDo:Fine adjustment tempo via cross correlation with tempo vs. onsets
     int maxLag = p->fft_res * 60 / minBpm;
     int minLag = p->fft_res * 60 / maxBpm;
     int peak = AutoCorrelation(p->peaks, frames, minLag, maxLag);

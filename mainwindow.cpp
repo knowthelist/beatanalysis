@@ -74,12 +74,20 @@ void MainWindow::analyseTempoFinished()
 
     // Show BPM Result
     ui->lblBpm->setText(QString::number(trackanalyser->bpm()));
+    int interval = 60 * trackanalyser->resolution() / trackanalyser->bpm();
 
     // Draw found onsets
     scene->clear();
-    for ( int i=1;i<trackanalyser->peaks().count();i++ ) {
-         QPen outlinePen(Qt::blue);
-         scene->addLine( QLineF( i, h, i, h-trackanalyser->peaks().at(i)*2 ), outlinePen);
+    QPen onsetPen(Qt::blue);
+    QPen tempoPen(Qt::green);
+    int j=0;
+    for ( int i=0;i<trackanalyser->peaks().count();i++,j++ ) {
+
+        scene->addLine( QLineF( i, h, i, h-trackanalyser->peaks().at(i)*2 ), onsetPen);
+        if ( j==interval ){
+            scene->addLine( QLineF( i, h, i, h + h*.2 ), tempoPen);
+            j=0;
+        }
     }
 
 }
